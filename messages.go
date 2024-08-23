@@ -12,16 +12,17 @@ const (
 )
 
 type Message struct {
-	ID          string           `json:"id"`
-	Object      string           `json:"object"`
-	CreatedAt   int              `json:"created_at"`
-	ThreadID    string           `json:"thread_id"`
-	Role        string           `json:"role"`
-	Content     []MessageContent `json:"content"`
-	FileIds     []string         `json:"file_ids"` //nolint:revive //backwards-compatibility
-	AssistantID *string          `json:"assistant_id,omitempty"`
-	RunID       *string          `json:"run_id,omitempty"`
-	Metadata    map[string]any   `json:"metadata"`
+	ID          string             `json:"id"`
+	Object      string             `json:"object"`
+	CreatedAt   int                `json:"created_at"`
+	ThreadID    string             `json:"thread_id"`
+	Role        string             `json:"role"`
+	Content     []MessageContent   `json:"content"`
+	FileIds     []string           `json:"file_ids"` //nolint:revive //backwards-compatibility
+	AssistantID *string            `json:"assistant_id,omitempty"`
+	RunID       *string            `json:"run_id,omitempty"`
+	Metadata    map[string]any     `json:"metadata"`
+	Attachments []ThreadAttachment `json:"attachments,omitempty"`
 
 	httpHeader
 }
@@ -52,10 +53,11 @@ type ImageFile struct {
 }
 
 type MessageRequest struct {
-	Role     string         `json:"role"`
-	Content  string         `json:"content"`
-	FileIds  []string       `json:"file_ids,omitempty"` //nolint:revive // backwards-compatibility
-	Metadata map[string]any `json:"metadata,omitempty"`
+	Role        string             `json:"role"`
+	Content     string             `json:"content"`
+	FileIds     []string           `json:"file_ids,omitempty"` //nolint:revive // backwards-compatibility
+	Metadata    map[string]any     `json:"metadata,omitempty"`
+	Attachments []ThreadAttachment `json:"attachments,omitempty"`
 }
 
 type MessageFile struct {
